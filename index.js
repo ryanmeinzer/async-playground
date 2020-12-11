@@ -28,20 +28,41 @@ const fs = require('fs')
 // }
 // importFile()
 
-// use a 'fileImported' callback to wait for a file to import with fs
-function fileImported(data) {
-    console.log('File Imported!')
+// // use a 'fileImported' callback to wait for a file to import with fs
+// function fileImported(data) {
+//     console.log('File Imported!')
+//     console.log('here is that file data:', data)
+// }
+// function importFile(callback) {
+//     fs.readFile('./data.txt', 'utf8', (err, data) => {
+//         if (err) {
+//             return console.log(err)
+//         }
+//         callback(data)
+//     })
+// }
+// importFile(fileImported)
+
+
+
+// use a 'fileImported' promise to wait for a file to import with fs
+function successCallback() {
+    console.log('success')
+}
+function failureCallback(err) {
+    console.log(err)
+}
+function showData(data) {
     console.log('here is that file data:', data)
 }
-function importFile(callback) {
-    fs.readFile('./data.txt', 'utf8', (err, data) => {
+let myPromise = new Promise(function(myResolve, myReject) {
+    myResolve(fs.readFile('./data.txt', 'utf8', (err, data) => {
         if (err) {
             return console.log(err)
         }
-        callback(data)
-    })
-}
-importFile(fileImported)
+        showData(data)
+    }))
+    myReject(err)
+})
 
-// use a 'fileImported' promise to wait for a file to import with fs
-    // TODO
+myPromise.then(successCallback, failureCallback)
