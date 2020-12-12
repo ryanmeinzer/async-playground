@@ -1,0 +1,19 @@
+{
+    "dogs": [
+        {
+            "name": "Sparky",
+            "breed": "German Shephard",
+            "age": 8
+        },
+        {
+            "name": "Muffles",
+            "breed": "Bulldog",
+            "age": 5
+        },
+        {
+            "name": "Lickie",
+            "breed": "Corgi",
+            "age": 6
+        }
+    ]
+}
